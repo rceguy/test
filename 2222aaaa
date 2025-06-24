@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+import random
+import time
+
+def rand_ring0_addr():
+    # Generate a “realistic” ring 0 address in the 0xffffffff80000000–0xffffffffff000000 range
+    base = 0xffffffff80000000
+    offset = random.randint(0, 0x7fffffff)
+    return f"0x{(base + offset):016x}"
+
+# Two-word tags to simulate ring 0 events
+TAGS = [
+    "Kernel Panic",
+    "Stack Pivot",
+    "Page Fault",
+    "Shell Spawn",
+    "Privilege Escalate",
+    "Code Integrity",
+    "Memory Leak",
+    "Lock Contention",
+]
+
+def fake_bgl(lines=5, delay=0.2):
+    for _ in range(lines):
+        addr = rand_ring0_addr()
+        tag = random.choice(TAGS)
+        print(f"{addr} {tag}")
+        time.sleep(delay)
+
+if __name__ == "__main__":
+    fake_bgl()
